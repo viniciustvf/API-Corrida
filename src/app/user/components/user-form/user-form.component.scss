@@ -1,0 +1,33 @@
+*{
+    font-family: sans-serif;
+}
+
+.container{
+    margin-top: 100px;
+}
+
+.container input{
+    border: none;
+    width: 200px;
+}
+
+.container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.salvar button{
+    width: 90px;
+    height: 30px;
+    border-radius: 3px;
+    background-color: rgb(211, 56, 56);
+    color: white;
+    margin-top: 30px;
+}
+
+.input-name button {
+    position: absolute;
+    right: 30px;
+    top: 140px;
+}
+  

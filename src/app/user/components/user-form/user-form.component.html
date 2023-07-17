@@ -1,0 +1,23 @@
+<div class="container">
+    <form action="#" #form>
+            <div class="input-name">
+                <label for="txtName">Nome</label>
+                <input type="text" id="txtName" name="txtName" [(ngModel)]="user.name">
+                <td><button (click)="filtrarNome(user.name)"><img src="../../../../assets/14309.png" width="15px"></button></td>
+            </div>
+            <div class="input-email">
+                <hr>
+                <label for="txtEmail">Email</label>
+                <input type="text" id="txtEmail" name="txtEmail" [(ngModel)]="user.email">
+            </div>
+            <div class="input-permissao">
+                <hr>
+                <label for="txtPermissao">Permissões</label>
+                <input type="radio" id="txtPermissaoAdm" name="txtPermissao" value="ADMIN" [(ngModel)]="user.roles" [checked]="user.roles === 'ADMIN'"> Admin
+                <input type="radio" id="txtPermissaoUsr" name="txtPermissao" value="USER" [(ngModel)]="user.roles"  [checked]="user.roles === 'USER'"> User
+            </div>
+            <div class="salvar">
+                <button>Salvar</button>
+            </div>
+    </form>
+</div>
