@@ -9,6 +9,7 @@
 .container input{
     border: none;
     width: 200px;
+    outline: 0;
 }
 
 .container label {
@@ -29,5 +30,9 @@
     position: absolute;
     right: 30px;
     top: 140px;
+}
+
+.input-permissao input{
+    width: 20px;
 }
   

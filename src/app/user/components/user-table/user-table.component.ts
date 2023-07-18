@@ -9,14 +9,22 @@ import { Subject } from 'rxjs';
   styleUrls: ['./user-table.component.scss'],
 })
 export class UserTableComponent implements OnInit {
-  
-  private usersSubject = new Subject<User[]>();
+  public users!: User[];
+  public userName!: string;
 
   constructor(private service: UserService) {}
 
   ngOnInit(): void {
-    this.service.listAll().subscribe((data) => {
-      this.usersSubject = data;
+    this.service.listAll().subscribe((users) => {
+      this.users = users;
+    });
+
+    this.service.emitNome.subscribe((name) => {
+      this.userName = name;
+    });
+
+    this.service.getUsersByName(this.userName).subscribe((users) => {
+      this.users = users;
     });
   }
 

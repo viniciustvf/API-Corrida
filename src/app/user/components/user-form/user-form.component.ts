@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 
@@ -9,7 +9,6 @@ import { UserService } from '../../services/user.service';
 })
 export class UserFormComponent implements OnInit {
   public userList: User[] = [];
-
   public user = {} as User;
 
   constructor(private service: UserService) {}
@@ -24,7 +23,7 @@ export class UserFormComponent implements OnInit {
     });
   }
 
-  public filtrarNome(nome: string) {
-    this.user = this.service.getUsersByName(nome);
+  public getUsersByName(nome: string) {
+    this.service.getUsersByName(nome);
   }
 }

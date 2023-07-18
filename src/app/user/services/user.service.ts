@@ -10,7 +10,8 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   public selectEvent = new EventEmitter();
-  private usersSubject = new Subject<User[]>();
+  public emitNome = new EventEmitter();
+  public usersSubject = new Subject<User[]>();
   private urlBase: string = 'http://localhost:8080/user';
 
   public listAll(): Observable<User[]> {
@@ -21,8 +22,11 @@ export class UserService {
   }
 
   public getUsersByName(name: string): Observable<User[]> {
-    let url = `${this.urlBase}/name/${name}`;
-    return this.http.get<User[]>(url);
+    this.http
+      .get<User[]>(`${this.urlBase}/name/${name}`)
+      .subscribe((users) => this.usersSubject.next(users));
+    this.emitNome.emit(name);
+    return this.usersSubject.asObservable();
   }
 
   public userSelected(user: User) {
