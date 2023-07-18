@@ -1,0 +1,26 @@
+<div class="container">
+    <form action="#" #form>
+            <div class="input-name">
+                <label for="txtName">Nome</label>
+                <input type="text" id="txtName" name="txtName" [(ngModel)]="track.name">
+                <button class="filtrar" (click)="getTracksByName()"><img src="../../../../assets/14309.png" width="15px"></button>
+            </div>
+            <div class="input-size">
+                <hr>
+                <label for="txtSize">Tamanho</label>
+                <input type="text" id="txtSize" name="txtSize" [(ngModel)]="track.size">
+            </div>
+            <div class="input-country">
+                <hr>
+                <label for="txtPais">País</label>
+                <select>
+                    <option value="opcao1"></option>
+                    <option value="opcao2">Opção 2</option>
+                    <option value="opcao3">Opção 3</option>
+                </select>
+            </div>
+            <div class="salvar">
+                <button (click)="insert()">Salvar</button>
+            </div>
+    </form>
+</div>

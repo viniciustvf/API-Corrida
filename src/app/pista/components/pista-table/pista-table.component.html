@@ -1,22 +1,22 @@
 <table [cellPadding]="0" [cellSpacing]="0">
     <tr class="titulo">
-      <td colspan="4">Usuários</td>
+      <td colspan="4">Pistas</td>
     </tr>
     <tr class="cabecalho">
       <td>Nome</td>
-      <td>Email</td>
-      <td>Permissões</td>
+      <td>Tamanho</td>
+      <td>País</td>
       <td>Ações</td>
     </tr>
-    <tr *ngFor="let user of users, let i = index">
-      <td>{{user.name}}</td>
-      <td>{{user.email}}</td>
-      <td>{{user.roles}}</td>
+    <tr *ngFor="let track of trackList, let i = index">
+      <td>{{track.name}}</td>
+      <td>{{track.size}}</td>
+      <td>{{track.country}}</td>
       <td>
-        <button (click)="selectUser(user)">
+        <button (click)="selectTrack(track)">
           <img src="../../../../assets/edit.png" width="15px" alt="Editar">
         </button>
-        <button (click)="delete(user)">
+        <button (click)="delete(track)">
             <img src="../../../../assets/delete.png" width="15px" alt="Excluir">
           </button>
       </td>

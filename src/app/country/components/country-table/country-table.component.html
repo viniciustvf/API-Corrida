@@ -1,22 +1,18 @@
 <table [cellPadding]="0" [cellSpacing]="0">
     <tr class="titulo">
-      <td colspan="4">Usuários</td>
+      <td colspan="2">Países</td>
     </tr>
     <tr class="cabecalho">
       <td>Nome</td>
-      <td>Email</td>
-      <td>Permissões</td>
       <td>Ações</td>
     </tr>
-    <tr *ngFor="let user of users, let i = index">
-      <td>{{user.name}}</td>
-      <td>{{user.email}}</td>
-      <td>{{user.roles}}</td>
+    <tr *ngFor="let country of countryList, let i = index">
+      <td>{{country.name}}</td>
       <td>
-        <button (click)="selectUser(user)">
+        <button (click)="selectCountry(country)">
           <img src="../../../../assets/edit.png" width="15px" alt="Editar">
         </button>
-        <button (click)="delete(user)">
+        <button (click)="delete(country)">
             <img src="../../../../assets/delete.png" width="15px" alt="Excluir">
           </button>
       </td>

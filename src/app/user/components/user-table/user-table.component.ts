@@ -10,7 +10,6 @@ import { Subject } from 'rxjs';
 })
 export class UserTableComponent implements OnInit {
   public users!: User[];
-  public userName!: string;
 
   constructor(private service: UserService) {}
 
@@ -18,17 +17,17 @@ export class UserTableComponent implements OnInit {
     this.service.listAll().subscribe((users) => {
       this.users = users;
     });
-
-    this.service.emitNome.subscribe((name) => {
-      this.userName = name;
-    });
-
-    this.service.getUsersByName(this.userName).subscribe((users) => {
-      this.users = users;
-    });
   }
 
   public selectUser(user: User): void {
     this.service.userSelected(user);
+  }
+
+  public delete(user: User) {
+    this.service.delete(user).subscribe(() => {
+      this.service.listAll().subscribe((users) => {
+        this.users = users;
+      });
+    });
   }
 }

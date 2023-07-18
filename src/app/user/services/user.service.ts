@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Observable, Subject, of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, Subject, of, tap } from 'rxjs';
 import { EventEmitter, Injectable } from '@angular/core';
 import { User } from '../models/user';
 
@@ -10,9 +10,34 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   public selectEvent = new EventEmitter();
-  public emitNome = new EventEmitter();
-  public usersSubject = new Subject<User[]>();
+  private usersSubject = new Subject<User[]>();
   private urlBase: string = 'http://localhost:8080/user';
+
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  };
+
+  public insert(user: User): Observable<User> {
+    return this.http.post<User>(this.urlBase, user, this.httpOptions).pipe(
+      tap(() => {
+        this.listAll();
+      })
+    );
+  }
+
+  public update(user: User): Observable<User> {
+    return this.http
+      .put<User>(`${this.urlBase}/${user.id}`, user, this.httpOptions)
+      .pipe(
+        tap(() => {
+          this.listAll();
+        })
+      );
+  }
+
+  public delete(user: User): Observable<void> {
+    return this.http.delete<void>(`${this.urlBase}/${user.id}`);
+  }
 
   public listAll(): Observable<User[]> {
     this.http
@@ -23,9 +48,8 @@ export class UserService {
 
   public getUsersByName(name: string): Observable<User[]> {
     this.http
-      .get<User[]>(`${this.urlBase}/name/${name}`)
+      .get<User[]>(`${this.urlBase}/name-starting/${name}`)
       .subscribe((users) => this.usersSubject.next(users));
-    this.emitNome.emit(name);
     return this.usersSubject.asObservable();
   }
 

@@ -8,22 +8,34 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./user-form.component.scss'],
 })
 export class UserFormComponent implements OnInit {
-  public userList: User[] = [];
+  public userList!: User[];
   public user = {} as User;
 
   constructor(private service: UserService) {}
 
   ngOnInit(): void {
     this.service.selectEvent.subscribe({
-      next: (res: User) => {
-        this.user.name = res.name;
-        this.user.email = res.email;
-        this.user.roles = res.roles;
+      next: (data: User) => {
+        this.user = { ...data };
       },
     });
   }
 
-  public getUsersByName(nome: string) {
-    this.service.getUsersByName(nome);
+  public insert() {
+    if (this.user.id) {
+      this.service.update(this.user).subscribe((data) => {
+        this.user = {} as User;
+      });
+    } else {
+      this.service.insert(this.user).subscribe((data) => {
+        this.user = {} as User;
+      });
+    }
+  }
+
+  public getUsersByName() {
+    this.service.getUsersByName(this.user.name).subscribe((data) => {
+      this.userList = data;
+    });
   }
 }

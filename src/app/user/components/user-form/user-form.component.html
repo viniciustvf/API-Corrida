@@ -3,7 +3,7 @@
             <div class="input-name">
                 <label for="txtName">Nome</label>
                 <input type="text" id="txtName" name="txtName" [(ngModel)]="user.name">
-                <td><button (click)="getUsersByName(user.name)"><img src="../../../../assets/14309.png" width="15px"></button></td>
+                <button class="filtrar" (click)="getUsersByName()"><img src="../../../../assets/14309.png" width="15px"></button>
             </div>
             <div class="input-email">
                 <hr>
@@ -13,11 +13,11 @@
             <div class="input-permissao">
                 <hr>
                 <label for="txtPermissao">Permissões</label>
-                <input type="radio" id="txtPermissaoAdm" name="txtPermissao" value="ADMIN" [(ngModel)]="user.roles" [checked]="user.roles === 'ADMIN'"> Admin
-                <input type="radio" id="txtPermissaoUsr" name="txtPermissao" value="USER" [(ngModel)]="user.roles"  [checked]="user.roles === 'USER'"> User
+                <input type="radio" id="txtPermissaoAdm" name="txtPermissao" value="ADMIN,USER" [(ngModel)]="user.roles"> Admin
+                <input type="radio" id="txtPermissaoUsr" name="txtPermissao" value="USER" [(ngModel)]="user.roles"> User
             </div>
             <div class="salvar">
-                <button>Salvar</button>
+                <button (click)="insert()">Salvar</button>
             </div>
     </form>
 </div>

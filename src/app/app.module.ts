@@ -8,11 +8,11 @@ import { MenuModule } from './menu/menu.module';
 import { FormsModule } from '@angular/forms';
 import { HomeModule } from './home/home.module';
 import { UserModule } from './user/user.module';
+import { CountryModule } from './country/country.module';
+import { PistaModule } from './pista/pista.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -20,9 +20,11 @@ import { UserModule } from './user/user.module';
     HttpClientModule,
     MenuModule,
     HomeModule,
-    UserModule
+    UserModule,
+    CountryModule,
+    PistaModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
