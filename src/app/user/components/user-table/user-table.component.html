@@ -1,15 +1,24 @@
-<table width="100%">
+<table [cellPadding]="0" [cellSpacing]="0">
+    <tr class="titulo">
+      <td colspan="4">Usuários</td>
+    </tr>
     <tr class="cabecalho">
-        <td>Nome</td>
-        <td>Email</td>
-        <td>Permissões</td>
-        <td>Ações</td>
+      <td>Nome</td>
+      <td>Email</td>
+      <td>Permissões</td>
+      <td>Ações</td>
     </tr>
     <tr *ngFor="let user of users, let i = index">
-        <td>{{user.name}}</td>
-        <td>{{user.email}}</td>
-        <td>{{user.roles}}</td>
-        <td><button (click)="selectUser(user)"><img src="../../../../assets/edit.png" width="15px"></button></td>
-        <td><button><img src="../../../../assets/delete.png" width="15px"></button></td>
+      <td>{{user.name}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.roles}}</td>
+      <td>
+        <button (click)="selectUser(user)">
+          <img src="../../../../assets/edit.png" width="15px" alt="Editar">
+        </button>
+        <button>
+            <img src="../../../../assets/delete.png" width="15px" alt="Excluir">
+          </button>
+      </td>
     </tr>
-</table>
+  </table>

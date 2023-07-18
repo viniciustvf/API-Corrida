@@ -21,13 +21,22 @@
     width: 90px;
     height: 30px;
     border-radius: 3px;
-    background-color: rgb(211, 56, 56);
+    background-color: rgba(0,153,242,255);
     color: white;
     margin-top: 30px;
+    border: none;
+}
+
+.salvar button:hover {
+    background-color: rgba(0, 190, 242, 255);
+    cursor: pointer;
 }
 
 .input-name button {
     position: absolute;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
     right: 30px;
     top: 140px;
 }
