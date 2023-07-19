@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { HomeModule } from './home/home.module';
 import { UserModule } from './user/user.module';
 import { CountryModule } from './country/country.module';
-import { PistaModule } from './pista/pista.module';
+import { TrackModule } from './track/track.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +22,7 @@ import { PistaModule } from './pista/pista.module';
     HomeModule,
     UserModule,
     CountryModule,
-    PistaModule,
+    TrackModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

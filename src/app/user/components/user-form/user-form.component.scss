@@ -3,8 +3,8 @@
 }
 
 .container input{
+    width: 97%;
     border: none;
-    width: 200px;
     outline: 0;
 }
 
@@ -29,15 +29,11 @@
 }
 
 .input-name button {
-    position: absolute;
     background-color: transparent;
     border: none;
     cursor: pointer;
-    right: 30px;
-    top: 85px;
 }
 
 .input-permissao input{
     width: 20px;
 }
-  

@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    justify-content: end;
+    margin-right: 140px;
+    margin-top: 10px;
+}
+
+.container div {
+    margin-right: 10px;
+}
+
+.container button {
+    border-color: rgba(0,100,242,255);
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    width: 70px;
+    height: 30px;
+    border-radius: 3px;
+    background-color: white;
+    color: black;
+    font-weight: 550;
+}
+
+.container button:hover{
+    background-color: rgba(0,100,242,255);
+    border: none;
+    transition: 0.5s;
+    width: 80px;
+    color: white;
+}

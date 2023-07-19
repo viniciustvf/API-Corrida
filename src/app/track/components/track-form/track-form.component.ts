@@ -4,10 +4,10 @@ import { TrackService } from '../../services/track.service';
 
 @Component({
   selector: 'app-track-form',
-  templateUrl: './pista-form.component.html',
-  styleUrls: ['./pista-form.component.scss'],
+  templateUrl: './track-form.component.html',
+  styleUrls: ['./track-form.component.scss'],
 })
-export class PistaFormComponent {
+export class TrackFormComponent {
   public trackList!: Track[];
   public track = {} as Track;
 
@@ -34,7 +34,7 @@ export class PistaFormComponent {
   }
 
   public getTracksByName() {
-    this.service.getUsersByName(this.track.name).subscribe((data) => {
+    this.service.getTracksByName(this.track.name).subscribe((data) => {
       this.trackList = data;
     });
   }

@@ -1,33 +1,40 @@
+.table-container {
+  margin-top: 25px;
+  background-color: rgb(234, 234, 234);
+  width: 100%;
+  border-radius: 5px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
 table {
-    margin-top: 25px;
-    background-color: rgb(234, 234, 234);
-    width: 100%;
-    border-radius: 5px;
-    table-layout: fixed;
-    overflow-y: scroll;
-  }
+  width: 100%;
+  table-layout: fixed;
+}
 
-  .cabecalho {
-    background-color: rgb(194, 194, 194);
-    color: white;
-    font-weight: bold;
-  }
+.cabecalho {
+  position: sticky;
+  top: 0;
+  background-color: rgb(194, 194, 194);
+  color: white;
+  font-weight: bold;
+}
 
-  .titulo {
-    text-align: center;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 10px;
-  }
+.titulo {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px;
+}
 
-  td {
-    padding: 10px;
-    width: 100%;
-  }
+td {
+  padding: 10px;
+  width: 100%;
+}
 
-  button {
-    border: none;
-    background: transparent;
-    cursor: pointer;
-  }
+button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
 

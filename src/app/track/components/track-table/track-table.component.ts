@@ -3,11 +3,11 @@ import { Track } from '../../models/track';
 import { TrackService } from '../../services/track.service';
 
 @Component({
-  selector: 'app-pista-table',
-  templateUrl: './pista-table.component.html',
-  styleUrls: ['./pista-table.component.scss'],
+  selector: 'app-track-table',
+  templateUrl: './track-table.component.html',
+  styleUrls: ['./track-table.component.scss'],
 })
-export class PistaTableComponent {
+export class TrackTableComponent {
   public trackList!: Track[];
 
   constructor(private service: TrackService) {}

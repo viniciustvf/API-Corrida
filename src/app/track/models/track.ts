@@ -1,4 +1,4 @@
-import { Country } from '../../pais/models/country';
+import { Country } from '../../country/models/country';
 
 export interface Track {
   id: number;

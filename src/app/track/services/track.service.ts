@@ -42,18 +42,18 @@ export class TrackService {
   public listAll(): Observable<Track[]> {
     this.http
       .get<Track[]>(this.urlBase)
-      .subscribe((users) => this.tracksSubject.next(users));
+      .subscribe((tracks) => this.tracksSubject.next(tracks));
     return this.tracksSubject.asObservable();
   }
 
-  public getUsersByName(name: string): Observable<Track[]> {
+  public getTracksByName(name: string): Observable<Track[]> {
     this.http
       .get<Track[]>(`${this.urlBase}/name-starting/${name}`)
-      .subscribe((users) => this.tracksSubject.next(users));
+      .subscribe((tracks) => this.tracksSubject.next(tracks));
     return this.tracksSubject.asObservable();
   }
 
-  public userSelected(user: Track) {
-    this.selectEvent.emit(user);
+  public userSelected(track: Track) {
+    this.selectEvent.emit(track);
   }
 }
