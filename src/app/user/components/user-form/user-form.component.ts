@@ -8,7 +8,6 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./user-form.component.scss'],
 })
 export class UserFormComponent implements OnInit {
-  public userList!: User[];
   public user = {} as User;
 
   constructor(private service: UserService) {}
@@ -34,8 +33,8 @@ export class UserFormComponent implements OnInit {
   }
 
   public getUsersByName() {
-    this.service.getUsersByName(this.user.name).subscribe((data) => {
-      this.userList = data;
-    });
+    this.service.getUsersByName(this.user.name);
   }
+
+  
 }

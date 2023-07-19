@@ -17,17 +17,17 @@ export class TrackService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  public insert(user: Track): Observable<Track> {
-    return this.http.post<Track>(this.urlBase, user, this.httpOptions).pipe(
+  public insert(track: Track): Observable<Track> {
+    return this.http.post<Track>(this.urlBase, track, this.httpOptions).pipe(
       tap(() => {
         this.listAll();
       })
     );
   }
 
-  public update(user: Track): Observable<Track> {
+  public update(track: Track): Observable<Track> {
     return this.http
-      .put<Track>(`${this.urlBase}/${user.id}`, user, this.httpOptions)
+      .put<Track>(`${this.urlBase}/${track.id}`, track, this.httpOptions)
       .pipe(
         tap(() => {
           this.listAll();

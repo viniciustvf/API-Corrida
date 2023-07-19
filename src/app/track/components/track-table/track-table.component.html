@@ -12,7 +12,7 @@
     <tr *ngFor="let track of trackList, let i = index">
       <td>{{track.name}}</td>
       <td>{{track.size}}</td>
-      <td>{{track.country}}</td>
+      <td>{{track.country.name}}</td>
       <td>
         <button (click)="selectTrack(track)">
           <img src="../../../../assets/edit.png" width="15px" alt="Editar">

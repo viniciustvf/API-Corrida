@@ -3,21 +3,23 @@
             <div class="input-name">
                 <label for="txtName">Nome</label>
                 <input type="text" id="txtName" name="txtName" [(ngModel)]="track.name">
-                <button class="filtrar" (click)="getTracksByName()"><img src="../../../../assets/14309.png" width="15px"></button>
+                <button class="filtrar" (click)="getTracksByName()" title="Busque pelo nome"><img src="../../../../assets/64673.png" width="15px"></button>
             </div>
             <div class="input-size">
                 <hr>
                 <label for="txtSize">Tamanho</label>
-                <input type="text" id="txtSize" name="txtSize" [(ngModel)]="track.size">
+                <input type="number" id="txtSize" name="txtSize" [(ngModel)]="track.size">
+                <button class="filtrar" (click)="onFindClickSize()"><img src="../../../../assets/64673.png" width="15px"></button>
+                <app-track-size-between *ngIf="showTrackSizeBetween"></app-track-size-between>
             </div>
             <div class="input-country">
                 <hr>
                 <label for="txtPais">País</label>
-                <select>
-                    <option value="opcao1">Brasil</option>
-                    <option value="opcao2">Argentina</option>
-                    <option value="opcao3">Chile</option>
+                <select id="pais" name="pais" [(ngModel)]="track.country" >
+                    <option *ngFor="let country of countryList" [ngValue]="country" name="pais">{{country.name}}</option>
                 </select>
+                <button class="filtrar" (click)="onFindClickCountry()"><img src="../../../../assets/64673.png" width="15px"></button>
+
             </div>
             <div class="salvar">
                 <button (click)="insert()">Salvar</button>

@@ -28,10 +28,28 @@
     cursor: pointer;
 }
 
-.input-name button {
+.input-name button{
     background-color: transparent;
     border: none;
     cursor: pointer;
 }
+
+.input-size button{
+    position: relative;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+} 
+
+.input-country button{
+    position: relative;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+} 
+
+.input-country select{
+    width: 120px;
+} 
 
   

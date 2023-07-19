@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Track } from '../../models/track';
 import { TrackService } from '../../services/track.service';
+import { CountryService } from '../../../country/services/country.service';
 
 @Component({
   selector: 'app-track-table',
@@ -10,7 +11,10 @@ import { TrackService } from '../../services/track.service';
 export class TrackTableComponent {
   public trackList!: Track[];
 
-  constructor(private service: TrackService) {}
+  constructor(
+    private service: TrackService,
+    private countryService: CountryService
+  ) {}
 
   ngOnInit(): void {
     this.service.listAll().subscribe((data) => {
