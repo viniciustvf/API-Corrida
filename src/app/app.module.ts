@@ -10,6 +10,7 @@ import { HomeModule } from './home/home.module';
 import { UserModule } from './user/user.module';
 import { CountryModule } from './country/country.module';
 import { TrackModule } from './track/track.module';
+import { ChampionshipModule } from './championship/championship.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ import { TrackModule } from './track/track.module';
     UserModule,
     CountryModule,
     TrackModule,
+    ChampionshipModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

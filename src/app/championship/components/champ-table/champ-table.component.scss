@@ -5,36 +5,37 @@
     border-radius: 5px;
     max-height: 290px;
     overflow-y: auto;
-}
+  }
   
-table {
+  table {
     width: 100%;
     table-layout: fixed;
-}
+  }
   
-.cabecalho {
+  .cabecalho {
     position: sticky;
     top: 0;
     background-color: rgb(194, 194, 194);
     color: white;
     font-weight: bold;
-}
-
-.titulo {
-    text-align: center;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 10px;
-}
-
-td {
-    padding: 10px;
-    width: 100%;
-}
-
-button {
-    border: none;
-    background: transparent;
-    cursor: pointer;
-}
-
+  }
+  
+  .titulo {
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      padding: 10px;
+  }
+  
+  td {
+      padding: 10px;
+      width: 100%;
+  }
+  
+  button {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+  }
+  
+  

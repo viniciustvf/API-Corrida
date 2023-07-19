@@ -48,7 +48,7 @@ export class TrackService {
 
   public getTracksByName(name: string): Observable<Track[]> {
     this.http
-      .get<Track[]>(`${this.urlBase}/name-starting/${name}`)
+      .get<Track[]>(`${this.urlBase}/name/${name}`)
       .subscribe((tracks) => this.tracksSubject.next(tracks));
     return this.tracksSubject.asObservable();
   }

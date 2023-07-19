@@ -1,0 +1,26 @@
+<div class="table-container">
+    <table [cellPadding]="0" [cellSpacing]="0">
+      <tr class="titulo">
+        <td colspan="3">Campeonatos</td>
+      </tr>
+      <tr class="cabecalho">
+        <td>Descrição</td>
+        <td>Ano</td>
+        <td>Ações</td>
+      </tr>
+      <tr *ngFor="let champ of championshipList, let i = index">
+        <td>{{champ.description}}</td>
+        <td>{{champ.year}}</td>
+        <td>
+          <button (click)="selectChampionship(champ)">
+            <img src="../../../../assets/edit.png" width="15px" alt="Editar">
+          </button>
+          <button (click)="delete(champ)">
+              <img src="../../../../assets/delete.png" width="15px" alt="Excluir">
+            </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  
+  
