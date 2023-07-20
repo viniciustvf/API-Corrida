@@ -8,19 +8,22 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { Observable, Subject, catchError, of, tap } from 'rxjs';
 import { Track } from '../models/track';
 import { Country } from '../../country/models/country';
+import { AuthService } from '../../login/services/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TrackService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   public selectEvent = new EventEmitter();
   private tracksSubject = new Subject<Track[]>();
   private urlBase: string = 'http://localhost:8080/track';
 
   private httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
   };
 
   public insert(track: Track): Observable<Track | null> {
@@ -54,19 +57,33 @@ export class TrackService {
   }
 
   public delete(user: Track): Observable<void | null> {
-    return this.http.delete<void>(`${this.urlBase}/${user.id}`).pipe(
-      catchError((error: HttpErrorResponse) => {
-        console.error('Ocorreu um erro na requisição:', error);
-        const errorMessage = error.error?.error || 'Erro desconhecido';
-        alert(errorMessage);
-        return of(null);
-      })
-    );
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.authService.token,
+      }),
+    };
+    return this.http
+      .delete<void>(`${this.urlBase}/${user.id}`, httpOptions)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          console.error('Ocorreu um erro na requisição:', error);
+          const errorMessage = error.error?.error || 'Erro desconhecido';
+          alert(errorMessage);
+          return of(null);
+        })
+      );
   }
 
   public listAll(): Observable<Track[]> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.authService.token,
+      }),
+    };
     this.http
-      .get<Track[]>(this.urlBase)
+      .get<Track[]>(this.urlBase, httpOptions)
       .pipe(
         tap((tracks) => this.tracksSubject.next(tracks)),
         catchError((error: HttpErrorResponse) => {
@@ -82,8 +99,14 @@ export class TrackService {
   }
 
   public getTracksByName(name: string): Observable<Track[]> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.authService.token,
+      }),
+    };
     this.http
-      .get<Track[]>(`${this.urlBase}/name/${name}`)
+      .get<Track[]>(`${this.urlBase}/name/${name}`, httpOptions)
       .pipe(
         tap((tracks) => this.tracksSubject.next(tracks)),
         catchError((error: HttpErrorResponse) => {
@@ -99,8 +122,14 @@ export class TrackService {
   }
 
   public getTracksByCountry(country: Country): Observable<Track[]> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.authService.token,
+      }),
+    };
     this.http
-      .get<Track[]>(`${this.urlBase}/country/${country.id}`)
+      .get<Track[]>(`${this.urlBase}/country/${country.id}`, httpOptions)
       .pipe(
         tap((tracks) => this.tracksSubject.next(tracks)),
         catchError((error: HttpErrorResponse) => {
@@ -119,9 +148,14 @@ export class TrackService {
     sizeI: number,
     sizeF: number
   ): Observable<Track[]> {
-    console.log(sizeI);
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.authService.token,
+      }),
+    };
     this.http
-      .get<Track[]>(`${this.urlBase}/size/${sizeI}/${sizeF}`)
+      .get<Track[]>(`${this.urlBase}/size/${sizeI}/${sizeF}`, httpOptions)
       .pipe(
         tap((tracks) => this.tracksSubject.next(tracks)),
         catchError((error: HttpErrorResponse) => {

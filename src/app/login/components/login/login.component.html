@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="login">
+        <form action="#" #form>
+            <div class="input-user">
+                <label for="txtUser">Usuário</label>
+                <input type="text" id="txtUser" name="txtUser" placeholder="Email" [(ngModel)]="user.email">
+            </div>
+            <div class="input-password">
+                <label for="txtUser">Senha</label>
+                <input type="password" id="txtPassword" name="txtPassword" placeholder="Senha" [(ngModel)]="user.password">
+            </div>
+            <div class="button-login">
+                <button (click)="onLogin()">Login</button>
+            </div>
+        </form>
+    </div>
+</div>

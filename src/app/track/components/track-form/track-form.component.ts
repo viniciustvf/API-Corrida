@@ -33,6 +33,7 @@ export class TrackFormComponent {
     this.countryService.listAll().subscribe((data) => {
       this.countryList = data;
     });
+    
   }
 
   public insert() {
@@ -53,7 +54,6 @@ export class TrackFormComponent {
 
   public getTracksBySizeBetween() {
     this.service.getTracksBySizeBetween(this.sizeI, this.sizeF);
-    console.log(this.sizeI);
   }
 
   public getTracksByCountry() {

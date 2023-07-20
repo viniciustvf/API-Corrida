@@ -5,6 +5,7 @@ import { UserComponent } from './user/components/user/user.component';
 import { CountryComponent } from './country/components/country/country.component';
 import { TrackComponent } from './track/components/track/track.component';
 import { ChampionshipComponent } from './championship/components/championship/championship.component';
+import { LoginComponent } from './login/components/login/login.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'country', component: CountryComponent },
   { path: 'track', component: TrackComponent },
   { path: 'championship', component: ChampionshipComponent },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
