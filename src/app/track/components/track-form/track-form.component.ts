@@ -14,8 +14,6 @@ export class TrackFormComponent {
   public trackList!: Track[];
 
   public track = {} as Track;
-  public showTrackSizeBetween: boolean = false;
-  public showFindByCountry: boolean = false;
 
   constructor(
     private service: TrackService,
@@ -52,11 +50,9 @@ export class TrackFormComponent {
     });
   }
 
-  public onFindClickSize() {
-    this.showTrackSizeBetween = !this.showTrackSizeBetween;
-  }
-
-  public onFindClickCountry() {
-    this.showFindByCountry = !this.showFindByCountry;
+  public getTracksByCountry() {
+    this.service.getTracksByCountry(this.track.country).subscribe((data) => {
+      this.trackList = data;
+    });
   }
 }

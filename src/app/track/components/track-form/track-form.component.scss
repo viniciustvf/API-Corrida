@@ -28,7 +28,46 @@
     cursor: pointer;
 }
 
+.container .input-size {
+    display: flex;
+    flex-direction: column;
+}
+  
+.container .input-size .labels {
+    display: flex;
+    gap: 10px;
+}
+  
+.container .input-size .labels label {
+    margin-bottom: 5px;
+}
+  
+.container .input-size .labels .label-busca label{
+    width: 20px;
+}
+  
+.container .input-size .labels .label-busca {
+    margin-left: 815px;
+}
+  
+.container .input-size .inputs-botoes {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.container .input-size .inputs-botoes .de {
+    width: 150px;
+    border-bottom: 1px solid black;
+}
+
+.container .input-size .inputs-botoes .ate {
+    width: 150px;
+    border-bottom: 1px solid black;
+}
+
 .input-name button{
+    position: relative;
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -52,4 +91,3 @@
     width: 120px;
 } 
 
-  

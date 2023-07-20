@@ -2,15 +2,22 @@
     <form action="#" #form>
             <div class="input-name">
                 <label for="txtName">Nome</label>
-                <input type="text" id="txtName" name="txtName" [(ngModel)]="track.name">
+                <input type="text" id="txtName" name="txtName" placeholder="Nome da pista" [(ngModel)]="track.name">
                 <button class="filtrar" (click)="getTracksByName()" title="Busque pelo nome"><img src="../../../../assets/64673.png" width="15px"></button>
             </div>
+            <hr>
             <div class="input-size">
-                <hr>
-                <label for="txtSize">Tamanho</label>
-                <input type="number" id="txtSize" name="txtSize" [(ngModel)]="track.size">
-                <button class="filtrar" (click)="onFindClickSize()"><img src="../../../../assets/64673.png" width="15px"></button>
-                <app-track-size-between *ngIf="showTrackSizeBetween"></app-track-size-between>
+                <div class="labels">
+                    <label for="txtSize">Tamanho</label>
+                    <label class="label-busca" for="txtSize">Buscar entre tamanhos (Metros)</label>
+                </div>
+                <div class="inputs-botoes">
+                    <input type="number" id="txtSize" name="txtSize" placeholder="Tamanho em metros" [(ngModel)]="track.size">
+                    <input class="de" type="number" id="txtSizeDe" name="txtSize" placeholder="De">
+                    <p>|</p>
+                    <input class="ate" type="number" id="txtSizeAte" name="txtSize" placeholder="Até">
+                    <button class="filtrar"><img src="../../../../assets/64673.png" width="15px"></button>
+                </div>
             </div>
             <div class="input-country">
                 <hr>
@@ -18,7 +25,7 @@
                 <select id="pais" name="pais" [(ngModel)]="track.country" >
                     <option *ngFor="let country of countryList" [ngValue]="country" name="pais">{{country.name}}</option>
                 </select>
-                <button class="filtrar" (click)="onFindClickCountry()"><img src="../../../../assets/64673.png" width="15px"></button>
+                <button class="filtrar" (click)="getTracksByCountry()"><img src="../../../../assets/64673.png" width="15px"></button>
 
             </div>
             <div class="salvar">
