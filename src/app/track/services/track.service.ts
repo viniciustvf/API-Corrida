@@ -5,15 +5,7 @@ import {
   HttpResponse,
 } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
-import {
-  Observable,
-  Subject,
-  catchError,
-  map,
-  of,
-  tap,
-  throwError,
-} from 'rxjs';
+import { Observable, Subject, catchError, of, tap } from 'rxjs';
 import { Track } from '../models/track';
 import { Country } from '../../country/models/country';
 
@@ -123,11 +115,28 @@ export class TrackService {
     return this.tracksSubject.asObservable();
   }
 
-  public userSelected(track: Track) {
-    this.selectEvent.emit(track);
+  public getTracksBySizeBetween(
+    sizeI: number,
+    sizeF: number
+  ): Observable<Track[]> {
+    console.log(sizeI);
+    this.http
+      .get<Track[]>(`${this.urlBase}/size/${sizeI}/${sizeF}`)
+      .pipe(
+        tap((tracks) => this.tracksSubject.next(tracks)),
+        catchError((error: HttpErrorResponse) => {
+          console.error('Ocorreu um erro na requisição:', error);
+          const errorMessage = error.error?.error || 'Erro desconhecido';
+          alert(errorMessage);
+          this.tracksSubject.next([]);
+          return [];
+        })
+      )
+      .subscribe();
+    return this.tracksSubject.asObservable();
   }
 
-  public showError(error: any): void {
-    console.error('Ocorreu um erro: ', error);
+  public userSelected(track: Track) {
+    this.selectEvent.emit(track);
   }
 }

@@ -13,6 +13,9 @@ export class TrackFormComponent {
   public countryList!: Country[];
   public trackList!: Track[];
 
+  public sizeI!: number;
+  public sizeF!: number;
+
   public track = {} as Track;
 
   constructor(
@@ -45,14 +48,15 @@ export class TrackFormComponent {
   }
 
   public getTracksByName() {
-    this.service.getTracksByName(this.track.name).subscribe((data) => {
-      this.trackList = data;
-    });
+    this.service.getTracksByName(this.track.name);
+  }
+
+  public getTracksBySizeBetween() {
+    this.service.getTracksBySizeBetween(this.sizeI, this.sizeF);
+    console.log(this.sizeI);
   }
 
   public getTracksByCountry() {
-    this.service.getTracksByCountry(this.track.country).subscribe((data) => {
-      this.trackList = data;
-    });
+    this.service.getTracksByCountry(this.track.country);
   }
 }

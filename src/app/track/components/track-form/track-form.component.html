@@ -13,10 +13,10 @@
                 </div>
                 <div class="inputs-botoes">
                     <input type="number" id="txtSize" name="txtSize" placeholder="Tamanho em metros" [(ngModel)]="track.size">
-                    <input class="de" type="number" id="txtSizeDe" name="txtSize" placeholder="De">
+                    <input class="de" type="number" name="txtSize" placeholder="De" [(ngModel)]="sizeI">
                     <p>|</p>
-                    <input class="ate" type="number" id="txtSizeAte" name="txtSize" placeholder="Até">
-                    <button class="filtrar"><img src="../../../../assets/64673.png" width="15px"></button>
+                    <input class="ate" type="number" name="txtSize" placeholder="Até" [(ngModel)]="sizeF">
+                    <button (click)="getTracksBySizeBetween()" class="filtrar"><img src="../../../../assets/64673.png" width="15px"></button>
                 </div>
             </div>
             <div class="input-country">
