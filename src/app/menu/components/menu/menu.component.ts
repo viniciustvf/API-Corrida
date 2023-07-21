@@ -12,7 +12,7 @@ export class MenuComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.authService.mostrarMenuEmitter.subscribe((data) => {
+    this.authService.showMenuEmitter.subscribe((data) => {
       this.showMenu = data;
     });
   }

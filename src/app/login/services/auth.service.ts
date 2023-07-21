@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, catchError, of, tap, throwError } from 'rxjs';
+import { Observable, catchError, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class AuthService {
   private token: string = 'Bearer ';
   private isUserAuthenticated: boolean = false;
 
-  public mostrarMenuEmitter = new EventEmitter<boolean>();
+  public showMenuEmitter = new EventEmitter<boolean>();
 
   constructor(private router: Router, private http: HttpClient) {}
 
@@ -28,12 +28,14 @@ export class AuthService {
       tap((data) => {
         this.token += data;
         localStorage.setItem('token', this.token);
-        this.mostrarMenuEmitter.emit(true);
+        this.showMenuEmitter.emit(true);
         this.router.navigate(['']);
+        console.log(this.token);
+        console.log(localStorage.getItem('token'));
         this.isUserAuthenticated = true;
       }),
       catchError((error) => {
-        this.mostrarMenuEmitter.emit(false);
+        this.showMenuEmitter.emit(false);
         console.error('Login error:', error);
         const errorMessage = 'Credenciais inválidas, erro de autenticação.';
         alert(errorMessage);
@@ -43,7 +45,33 @@ export class AuthService {
     );
   }
 
+  isTokenValid(token: string): boolean {
+    const tokenParts = token.split('.');
+    if (tokenParts.length !== 3) {
+      return false;
+    }
+
+    const payloadBase64 = tokenParts[1];
+    const payload: { exp?: number } = JSON.parse(atob(payloadBase64));
+    let expirationTimeInMilliSeconds = payload.exp;
+
+    if (!expirationTimeInMilliSeconds) {
+      return false;
+    } else {
+      expirationTimeInMilliSeconds = expirationTimeInMilliSeconds * 1000;
+    }
+    const currentTimeInMilliSeconds = Math.floor(Date.now());
+    return currentTimeInMilliSeconds < expirationTimeInMilliSeconds;
+  }
+
   isUserAuth(): boolean {
+    let tokenLocal = localStorage.getItem('token');
+    if (tokenLocal) {
+      if (this.isTokenValid(tokenLocal)) {
+        this.showMenuEmitter.emit(true);
+        return (this.isUserAuthenticated = true);
+      }
+    }
     return this.isUserAuthenticated;
   }
 }

@@ -1,23 +1,25 @@
 .container {
     display: flex;
     justify-content: end;
-    background-color: rgba(0, 200, 242, 255);
-    width: 100%;
-    padding: 10px;
+    align-items: center;
+    background-color: rgb(200, 242, 255);
+    padding: 15px;
     position: fixed;
     top: 0;
     left: 0;
-}
-
-.container div {
+    width: 100%; 
+    box-sizing: border-box;
+  }
+  
+  .container div {
     margin-right: 10px;
-}
-
-.container div:last-child {
+  }
+  
+  .container div:last-child {
     margin-right: 170px;
-}
-
-.container button {
+  }
+  
+  .container button {
     border-color: rgba(0,100,242,255);
     text-align: center;
     text-decoration: none;
@@ -29,12 +31,16 @@
     background-color: white;
     color: black;
     font-weight: 550;
-}
-
-.container button:hover{
+  }
+  
+  .container button:hover {
     background-color: rgba(0,100,242,255);
     border: none;
     transition: 0.2s;
     width: 100px;
     color: white;
-}
+  }
+  
+
+  
+  
