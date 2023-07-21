@@ -13,8 +13,6 @@ export class LoginComponent {
   constructor(private authService: AuthService) {}
 
   public onLogin() {
-    this.authService
-      .login(this.user.email, this.user.password)
-      .subscribe(() => {});
+    this.authService.login(this.user.email, this.user.password).subscribe();
   }
 }

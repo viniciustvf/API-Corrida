@@ -6,13 +6,18 @@ import { CountryComponent } from './country/components/country/country.component
 import { TrackComponent } from './track/components/track/track.component';
 import { ChampionshipComponent } from './championship/components/championship/championship.component';
 import { LoginComponent } from './login/components/login/login.component';
+import { AuthGuard } from './guards/auth-guard.service';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'user', component: UserComponent },
-  { path: 'country', component: CountryComponent },
-  { path: 'track', component: TrackComponent },
-  { path: 'championship', component: ChampionshipComponent },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
+  { path: 'country', component: CountryComponent, canActivate: [AuthGuard] },
+  { path: 'track', component: TrackComponent, canActivate: [AuthGuard] },
+  {
+    path: 'championship',
+    component: ChampionshipComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'login', component: LoginComponent },
 ];
 

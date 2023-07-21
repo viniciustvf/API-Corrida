@@ -56,15 +56,15 @@ export class TrackService {
       );
   }
 
-  public delete(user: Track): Observable<void | null> {
+  public delete(track: Track): Observable<void | null> {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: this.authService.token,
+        Authorization: localStorage.getItem('token') || '',
       }),
     };
     return this.http
-      .delete<void>(`${this.urlBase}/${user.id}`, httpOptions)
+      .delete<void>(`${this.urlBase}/${track.id}`, httpOptions)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           console.error('Ocorreu um erro na requisição:', error);
@@ -79,7 +79,7 @@ export class TrackService {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: this.authService.token,
+        Authorization: localStorage.getItem('token') || '',
       }),
     };
     this.http
@@ -102,7 +102,7 @@ export class TrackService {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: this.authService.token,
+        Authorization: localStorage.getItem('token') || '',
       }),
     };
     this.http
@@ -125,7 +125,7 @@ export class TrackService {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: this.authService.token,
+        Authorization: localStorage.getItem('token') || '',
       }),
     };
     this.http
@@ -151,7 +151,7 @@ export class TrackService {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: this.authService.token,
+        Authorization: localStorage.getItem('token') || '',
       }),
     };
     this.http

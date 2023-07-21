@@ -33,8 +33,6 @@ export class UserFormComponent implements OnInit {
   }
 
   public getUsersByName() {
-    this.service.getUsersByName(this.user.name);
+    this.service.getUserByName(this.user.name);
   }
-
-  
 }

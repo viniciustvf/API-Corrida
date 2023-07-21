@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, catchError, of, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  
-  public token: string = 'Bearer ';
+  private token: string = 'Bearer ';
+  private isUserAuthenticated: boolean = false;
+
+  public mostrarMenuEmitter = new EventEmitter<boolean>();
 
   constructor(private router: Router, private http: HttpClient) {}
 
@@ -25,7 +27,23 @@ export class AuthService {
     return this.http.post<string>(url, userLogin, httpOptions).pipe(
       tap((data) => {
         this.token += data;
+        localStorage.setItem('token', this.token);
+        this.mostrarMenuEmitter.emit(true);
+        this.router.navigate(['']);
+        this.isUserAuthenticated = true;
+      }),
+      catchError((error) => {
+        this.mostrarMenuEmitter.emit(false);
+        console.error('Login error:', error);
+        const errorMessage = 'Credenciais inválidas, erro de autenticação.';
+        alert(errorMessage);
+        this.isUserAuthenticated = false;
+        return of('');
       })
     );
+  }
+
+  isUserAuth(): boolean {
+    return this.isUserAuthenticated;
   }
 }
