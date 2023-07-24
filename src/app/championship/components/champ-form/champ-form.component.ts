@@ -11,6 +11,9 @@ export class ChampFormComponent {
   public championshipList!: Championship[];
   public championship = {} as Championship;
 
+  public yearI!: number;
+  public yearF!: number;
+
   constructor(private service: ChampionshipService) {}
 
   ngOnInit(): void {
@@ -33,11 +36,23 @@ export class ChampFormComponent {
     }
   }
 
+  public getChampionshipByY() {
+    if (this.championship.year && (!this.yearI || !this.yearF)) {
+      this.getChampionshipByYear();
+    } else {
+      this.getChampionshipByYearBetween();
+    }
+  }
+  
   public getChampionshipByDescription() {
-    this.service
-      .getChampionshipByDescription(this.championship.description)
-      .subscribe((data) => {
-        this.championshipList = data;
-      });
+    this.service.getChampionshipByDescription(this.championship.description);
+  }
+
+  public getChampionshipByYear() {
+    this.service.getChampionshipByYear(this.championship.year);
+  }
+
+  public getChampionshipByYearBetween() {
+    this.service.getChampionshipByYearBetween(this.yearI, this.yearF);
   }
 }

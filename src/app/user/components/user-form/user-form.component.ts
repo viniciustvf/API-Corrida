@@ -35,4 +35,8 @@ export class UserFormComponent implements OnInit {
   public getUsersByName() {
     this.service.getUserByName(this.user.name);
   }
+
+  public getUserByEmail() {
+    this.service.getUserByEmail(this.user.email);
+  }
 }

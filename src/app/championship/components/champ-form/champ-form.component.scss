@@ -28,10 +28,48 @@
     cursor: pointer;
 }
 
-.input-name button {
+.input-name button, .input-year button {
     background-color: transparent;
     border: none;
     cursor: pointer;
 }
 
+.container .input-year .inputs-botoes {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.container .input-year .inputs-botoes .de {
+    width: 150px;
+    border-bottom: 1px solid black;
+}
+
+.container .input-year .inputs-botoes .ate {
+    width: 150px;
+    border-bottom: 1px solid black;
+}
+
+
+
+
+
+
+
+.container .input-year .labels {
+    display: flex;
+    gap: 10px;
+}
   
+.container .input-year .labels label {
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+  
+.container .input-year .labels .label-busca label{
+    width: 20px;
+}
+  
+.container .input-year .labels .label-busca {
+    margin-left: 600px;
+}

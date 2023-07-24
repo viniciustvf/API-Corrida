@@ -2,13 +2,22 @@
     <form action="#" #form>
             <div class="input-name">
                 <label for="txtName">Descrição</label>
-                <input type="text" id="txtName" name="txtName" [(ngModel)]="championship.description">
-                <button class="filtrar" (click)="getChampionshipByDescription()"><img src="../../../../assets/14309.png" width="15px"></button>
+                <input type="text" id="txtName" name="txtName" [(ngModel)]="championship.description" placeholder="Descrição">
+                <button class="filtrar" (click)="getChampionshipByDescription()"><img src="../../../../assets/64673.png" width="15px"></button>
                 <hr>
             </div>
             <div class="input-year">
-                <label for="txtYear">Ano do Campeonato</label>
-                <input type="number" id="txtYear" name="txtYear" [(ngModel)]="championship.year">
+                <div class="labels">
+                    <label for="txtYear">Ano do Campeonato</label>
+                    <label class="label-busca" for="txtYear">Buscar entre intervalo de anos</label>
+                </div>
+                <div class="inputs-botoes">
+                    <input type="number" id="txtYear" name="txtYear" [(ngModel)]="championship.year" placeholder="Ano do Campeonato">
+                    <input class="de" type="number" name="txtYear" placeholder="De" [(ngModel)]="yearI">
+                    <p>|</p>
+                    <input class="ate" type="number" name="txtYear" placeholder="Até" [(ngModel)]="yearF">
+                    <button class="filtrar" (click)="getChampionshipByY()"><img src="../../../../assets/64673.png" width="15px"></button>
+                </div>
                 <hr>
             </div>
             <div class="salvar">

@@ -19,7 +19,10 @@ export class CountryService {
   private urlBase: string = 'http://localhost:8080/country';
 
   private httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: localStorage.getItem('token') || '',
+    }),
   };
 
   public insert(country: Country): Observable<Country | null> {
@@ -83,7 +86,7 @@ export class CountryService {
     this.http
       .get<Country[]>(this.urlBase, httpOptions)
       .pipe(
-        tap((countrys) => this.countrySubject.next(countrys)),
+        tap((countries) => this.countrySubject.next(countries)),
         catchError((error: HttpErrorResponse) => {
           console.error('Ocorreu um erro na requisição:', error);
           const errorMessage =
@@ -104,9 +107,9 @@ export class CountryService {
       }),
     };
     this.http
-      .get<Country[]>(`${this.urlBase}/name/${name}`, httpOptions)
+      .get<Country[]>(`${this.urlBase}/name-starting/${name}`, httpOptions)
       .pipe(
-        tap((countrys) => this.countrySubject.next(countrys)),
+        tap((country) => this.countrySubject.next(country)),
         catchError((error: HttpErrorResponse) => {
           console.error('Ocorreu um erro na requisição:', error);
           const errorMessage = error.error?.error || 'Erro desconhecido';

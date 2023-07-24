@@ -2,7 +2,6 @@ import {
   HttpClient,
   HttpErrorResponse,
   HttpHeaders,
-  HttpResponse,
 } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable, Subject, catchError, of, tap } from 'rxjs';
@@ -23,6 +22,7 @@ export class TrackService {
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
+      Authorization: localStorage.getItem('token') || '',
     }),
   };
 

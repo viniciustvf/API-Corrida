@@ -19,7 +19,10 @@ export class ChampionshipService {
   private urlBase: string = 'http://localhost:8080/championship';
 
   private httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: localStorage.getItem('token') || '',
+    }),
   };
 
   public insert(championship: Championship): Observable<Championship | null> {
@@ -110,7 +113,10 @@ export class ChampionshipService {
       }),
     };
     this.http
-      .get<Championship[]>(`${this.urlBase}/name/${name}`, httpOptions)
+      .get<Championship[]>(
+        `${this.urlBase}/description-starting/${name}`,
+        httpOptions
+      )
       .pipe(
         tap((championships) => this.championshipSubject.next(championships)),
         catchError((error: HttpErrorResponse) => {

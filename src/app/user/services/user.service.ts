@@ -19,7 +19,10 @@ export class UserService {
   private urlBase: string = 'http://localhost:8080/user';
 
   private httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: localStorage.getItem('token') || '',
+    }),
   };
 
   public insert(track: User): Observable<User | null> {
@@ -102,7 +105,30 @@ export class UserService {
       }),
     };
     this.http
-      .get<User[]>(`${this.urlBase}/name/${name}`, httpOptions)
+      .get<User[]>(`${this.urlBase}/name-starting/${name}`, httpOptions)
+      .pipe(
+        tap((users) => this.usersSubject.next(users)),
+        catchError((error: HttpErrorResponse) => {
+          console.error('Ocorreu um erro na requisição:', error);
+          const errorMessage = error.error?.error || 'Erro desconhecido';
+          alert(errorMessage);
+          this.usersSubject.next([]);
+          return [];
+        })
+      )
+      .subscribe();
+    return this.usersSubject.asObservable();
+  }
+
+  public getUserByEmail(email: string): Observable<User[]> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem('token') || '',
+      }),
+    };
+    this.http
+      .get<User[]>(`${this.urlBase}/email/${email}`, httpOptions)
       .pipe(
         tap((users) => this.usersSubject.next(users)),
         catchError((error: HttpErrorResponse) => {

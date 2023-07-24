@@ -34,8 +34,6 @@ export class CountryFormComponent {
   }
 
   public getCountryByName() {
-    this.service.getCountryByName(this.country.name).subscribe((data) => {
-      this.countryList = data;
-    });
+    this.service.getCountryByName(this.country.name);
   }
 }

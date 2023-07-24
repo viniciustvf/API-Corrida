@@ -30,8 +30,6 @@ export class AuthService {
         localStorage.setItem('token', this.token);
         this.showMenuEmitter.emit(true);
         this.router.navigate(['']);
-        console.log(this.token);
-        console.log(localStorage.getItem('token'));
         this.isUserAuthenticated = true;
       }),
       catchError((error) => {
