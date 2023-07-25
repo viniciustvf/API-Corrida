@@ -49,14 +49,14 @@ export class TrackFormComponent {
   }
 
   public getTracksByName() {
-    this.service.getTracksByName(this.track.name);
+    this.service.getTracksByName(this.track.name).subscribe();
   }
 
   public getTracksBySizeBetween() {
-    this.service.getTracksBySizeBetween(this.sizeI, this.sizeF);
+    this.service.getTracksBySizeBetween(this.sizeI, this.sizeF).subscribe();
   }
 
   public getTracksByCountry() {
-    this.service.getTracksByCountry(this.track.country);
+    this.service.getTracksByCountry(this.track.country).subscribe();
   }
 }

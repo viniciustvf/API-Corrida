@@ -3,7 +3,7 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
-import { Observable, Subject, catchError, of, tap } from 'rxjs';
+import { Observable, Subject, catchError, map, of, tap } from 'rxjs';
 import { EventEmitter, Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { AuthService } from '../../login/services/auth.service';
@@ -127,9 +127,10 @@ export class UserService {
         Authorization: localStorage.getItem('token') || '',
       }),
     };
-    this.http
-      .get<User[]>(`${this.urlBase}/email/${email}`, httpOptions)
+    return this.http
+      .get<User>(`${this.urlBase}/email/${email}`, httpOptions)
       .pipe(
+        map((user) => [user]),
         tap((users) => this.usersSubject.next(users)),
         catchError((error: HttpErrorResponse) => {
           console.error('Ocorreu um erro na requisição:', error);
@@ -138,9 +139,7 @@ export class UserService {
           this.usersSubject.next([]);
           return [];
         })
-      )
-      .subscribe();
-    return this.usersSubject.asObservable();
+      );
   }
 
   public userSelected(user: User) {

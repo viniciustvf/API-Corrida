@@ -22,21 +22,17 @@ export class UserFormComponent implements OnInit {
 
   public insert() {
     if (this.user.id) {
-      this.service.update(this.user).subscribe((data) => {
-        this.user = {} as User;
-      });
+      this.service.update(this.user).subscribe();
     } else {
-      this.service.insert(this.user).subscribe((data) => {
-        this.user = {} as User;
-      });
+      this.service.insert(this.user).subscribe();
     }
   }
 
   public getUsersByName() {
-    this.service.getUserByName(this.user.name);
+    this.service.getUserByName(this.user.name).subscribe();
   }
 
   public getUserByEmail() {
-    this.service.getUserByEmail(this.user.email);
+    this.service.getUserByEmail(this.user.email).subscribe();
   }
 }
